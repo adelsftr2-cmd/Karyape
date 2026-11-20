@@ -624,7 +624,7 @@ const oldSchools=read('rk_schools',null)||[];
 const oldNameAliases={'Tarakanita Citra Raya':'TK Tarakanita Citra Raya','Tarakanita Gading Serpong':'TK Tarakanita Gading Serpong','Solideo':'TK Kristen SoliDEO','Cikal':'TK Islam Cikal Harapan III'};
 schools=DEFAULT_SCHOOLS.map((base,i)=>{
  const match=oldSchools.find(o=>o.name===base.name) || oldSchools.find(o=>(oldNameAliases[o.name]||'')===base.name);
- return {...base,...(match||{}),id:match?.id||'school-'+(i+1),name:base.name,level:base.level,contents:Array.isArray(match?.contents)?match.contents:(base.contents||[]),teachers:Array.isArray(match?.teachers)?match.teachers:(Array.isArray(base.teachers)?base.teachers:[]),steam:base.steam,extrakurikuler:base.extrakurikuler};
+ return {...base,...(match||{}),id:'school-'+(i+1),name:base.name,level:base.level,contents:Array.isArray(match?.contents)?match.contents:(base.contents||[]),teachers:Array.isArray(match?.teachers)?match.teachers:(Array.isArray(base.teachers)?base.teachers:[]),steam:base.steam,extrakurikuler:base.extrakurikuler};
 });
 schools.forEach(s=>{if(!Array.isArray(s.teachers)){s.teachers=[];if(s.teacher&&s.teacher!=='Profil Guru')s.teachers.push({id:'teacher-'+s.id+'-1',name:s.teacher,role:s.role||'Guru',experience:s.experience||'',photo:s.photo||''});}else{s.teachers=s.teachers.slice(0,5);}});
 save();
